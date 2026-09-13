@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upward Local — Never miss another customer message</title>
+
+<!-- Meta & SEO Tags -->
+<meta name="description" content="A simple reply tool for the questions your customers already ask — hours, prices, bookings — answered instantly, even when you can't get to the phone. Free 2-week trial, then £8/month.">
+<meta property="og:title" content="Upward Local — Never miss another customer message">
+<meta property="og:description" content="A simple reply tool for the questions your customers already ask — hours, prices, bookings — answered instantly, even when you can't get to the phone.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://upwardlocal.co.uk/og-image.jpg">
+<meta property="og:url" content="https://upwardlocal.co.uk/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Upward Local — Never miss another customer message">
+<meta name="twitter:description" content="A simple reply tool for the questions your customers already ask — hours, prices, bookings — answered instantly, even when you can't get to the phone.">
+<meta name="twitter:image" content="https://upwardlocal.co.uk/og-image.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Upward Local",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "A simple reply tool for shops, salons, trades and studios that answers common customer questions instantly via website, Instagram, or Facebook.",
+  "offers": {
+    "@type": "Offer",
+    "price": "8.00",
+    "priceCurrency": "GBP",
+    "priceValidUntil": "2026-12-31",
+    "description": "Free for the first 2 weeks, then £8/month. Cancel any time, no contract."
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1a17;
+    --paper:#f6f1e7;
+    --paper-2:#efe7d6;
+    --green:#16342b;
+    --green-2:#1f4739;
+    --green-bright:#4e8b67;
+    --gold:#c89b3c;
+    --red:#9b3a2e;
+    --line: rgba(28,26,23,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:800;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{color:inherit;}
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 28px; }
+  .band{ padding:88px 0; }
+  .band.dark{ background:var(--green); color:var(--paper); }
+  .band.dark .line{ border-color:rgba(246,241,231,0.2); }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:12.5px;
+    color:var(--gold);
+    margin-bottom:14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); display:inline-block; }
+
+  /* ---------- HERO ---------- */
+  .hero{ background:var(--green); color:var(--paper); padding:70px 0 0 0; position:relative; overflow:hidden; }
+  .hero-wrap{ max-width:1040px; margin:0 auto; padding:0 28px 90px; position:relative; z-index:2; }
+  .wordmark{
+    font-size:clamp(52px,9vw,104px);
+    line-height:0.92;
+    color:var(--paper);
+  }
+  .wordmark span{ color:var(--gold); }
+  .tagline{
+    font-family:'Source Sans 3', sans-serif;
+    text-transform:none;
+    font-weight:500;
+    font-size:20px;
+    max-width:520px;
+    margin-top:22px;
+    color:rgba(246,241,231,0.86);
+  }
+
+  /* ---------- SIGN TOGGLE ---------- */
+  .sign-rig{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:760px){ .sign-rig{ grid-template-columns:1fr; } }
+
+  .hook{
+    width:2px; height:34px; background:rgba(246,241,231,0.5); margin:0 auto;
+  }
+  .sign-frame{
+    perspective:900px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .sign{
+    width:180px; height:180px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    cursor:pointer;
+    user-select:none;
+    transform-style:preserve-3d;
+    transition:transform 0.7s cubic-bezier(.34,1.56,.64,1);
+    box-shadow:0 18px 30px rgba(0,0,0,0.35);
+    border:3px solid rgba(0,0,0,0.15);
+  }
+  .sign.is-open{ transform:rotateY(180deg); }
+  .sign-face{
+    position:absolute; inset:0; border-radius:7px;
+    display:flex; align-items:center; justify-content:center;
+    backface-visibility:hidden;
+    padding:14px;
+  }
+  .sign-face.closed{ background:var(--red); }
+  .sign-face.open{ background:var(--green-bright); transform:rotateY(180deg); }
+  .sign-face .label{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900; font-size:30px; color:var(--paper);
+    letter-spacing:0.03em;
+  }
+  .sign-sub{
+    margin-top:16px; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:rgba(246,241,231,0.8); text-align:center; max-width:190px;
+  }
+
+  /* ---------- DEMO PANEL COLUMN + CALLOUT ---------- */
+  .demo-col{ display:flex; flex-direction:column; }
+  .demo-callout{
+    display:flex;
+    align-items:flex-start;
+    justify-content:flex-end;
+    gap:10px;
+    margin-bottom:14px;
+    padding-right:6px;
+  }
+  .demo-callout .callout-text{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--gold);
+    text-align:right;
+    line-height:1.4;
+    max-width:220px;
+  }
+  .demo-callout .callout-arrow{
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .demo-callout .callout-arrow svg{ display:block; }
+  @media (max-width:760px){
+    .demo-callout{ justify-content:flex-start; }
+    .demo-callout .callout-text{ text-align:left; }
+  }
+
+  /* ---------- DEMO PANEL (now hosts the full chatbot) ---------- */
+  .demo-panel{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 24px 50px rgba(0,0,0,0.35);
+    display:flex;
+    flex-direction:column;
+  }
+  .demo-topbar{
+    background:var(--paper-2);
+    padding:14px 20px;
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .demo-topbar .biz{ font-weight:700; font-size:15px; }
+  .demo-topbar .status{
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    text-transform:uppercase; letter-spacing:0.08em;
+    padding:4px 10px; border-radius:20px;
+  }
+  .status.closed-state{ background:rgba(155,58,46,0.12); color:var(--red); }
+  .status.open-state{ background:rgba(78,139,103,0.15); color:var(--green-bright); }
+
+  .demo-body{ position:relative; height:340px; }
+  .state-layer{
+    position:absolute; inset:0;
+    padding:22px 20px;
+    display:flex; flex-direction:column; gap:10px;
+    opacity:0; pointer-events:none;
+    transition:opacity 0.35s ease;
+    overflow-y:auto;
+    overflow-anchor:none;
+  }
+  .state-layer.active{ opacity:1; pointer-events:auto; }
+
+  .msg-in{
+    align-self:flex-start; max-width:82%;
+    background:var(--paper-2); border:1px solid var(--line);
+    border-radius:12px 12px 12px 3px; padding:9px 13px; font-size:14.5px;
+    white-space:pre-line; word-break:break-word;
+  }
+  .msg-meta{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:#8a8378; margin-top:2px; }
+  .ghosted{ opacity:0.55; }
+  .no-reply{
+    align-self:flex-start; font-family:'IBM Plex Mono', monospace; font-size:11.5px;
+    color:var(--red); border:1px dashed var(--red); border-radius:8px; padding:6px 10px; margin-top:2px;
+  }
+
+  .msg-out{
+    align-self:flex-end; max-width:82%;
+    background:var(--green); color:var(--paper);
+    border-radius:12px 12px 3px 12px; padding:9px 13px; font-size:14.5px;
+    white-space:pre-line; word-break:break-word;
+  }
+
+  .chat-input-row{
+    display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--line);
+    background:var(--paper);
+  }
+  .chat-input-row input{
+    flex:1; border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+    font-family:'Source Sans 3', sans-serif; font-size:14.5px; background:#fff;
+    min-width:0;
+  }
+  .chat-input-row button{
+    background:var(--green); color:var(--paper); border:none; border-radius:8px;
+    padding:0 18px; font-weight:600; cursor:pointer; font-family:'Source Sans 3', sans-serif;
+  }
+  .chat-input-row button:disabled{ opacity:0.6; cursor:not-allowed; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; border:1px solid var(--line);
+    border-radius:20px; padding:5px 11px; cursor:pointer; background:#fff;
+  }
+  .chip:hover{ background:var(--paper-2); }
+  .chip.disabled{ opacity:0.5; cursor:not-allowed; pointer-events:none; }
+  .typing{ display:flex; gap:4px; padding:6px 0; }
+  .typing span{ width:6px; height:6px; border-radius:50%; background:#8a8378; animation:blink 1.2s infinite ease-in-out; }
+  .typing span:nth-child(2){ animation-delay:0.2s; }
+  .typing span:nth-child(3){ animation-delay:0.4s; }
+  @keyframes blink{ 0%,80%,100%{ opacity:0.25; } 40%{ opacity:1; } }
+
+  /* ---------- PROBLEM BAND ---------- */
+  .receipts{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:44px;
+  }
+  @media (max-width:760px){ .receipts{ grid-template-columns:1fr; } }
+  .receipt{
+    background:#fff; border:1px solid var(--line); border-radius:2px;
+    padding:22px 20px; box-shadow:0 6px 0 rgba(28,26,23,0.05);
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .receipt .q{ font-size:13px; color:#5c554a; }
+  .receipt .tick{ margin-top:14px; font-size:11px; color:var(--red); border-top:1px dashed var(--line); padding-top:10px; }
+
+  /* ---------- STEPS ---------- */
+  .steps{ margin-top:48px; display:flex; flex-direction:column; }
+  .step{ display:grid; grid-template-columns:64px 1fr; gap:22px; padding:26px 0; border-top:1px solid var(--line); }
+  .step:last-child{ border-bottom:1px solid var(--line); }
+  .step-num{ font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:42px; color:var(--gold); }
+  .step h3{ font-size:20px; text-transform:none; letter-spacing:0; margin-bottom:6px; }
+  .step p{ margin:0; color:#463f36; max-width:520px; }
+
+  /* ---------- PRICING ---------- */
+  .price-tiers{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    margin-top:40px;
+  }
+  @media (max-width:900px){ .price-tiers{ grid-template-columns:1fr; } }
+  .price-card{
+    background:var(--green); color:var(--paper); border-radius:12px; padding:36px 32px;
+    display:flex; flex-direction:column; gap:24px;
+    height:100%;
+  }
+  .price-card .price-top{ flex:1; }
+  .price-tier-label{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:12px;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .price-num{ font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:48px; }
+  .price-num span{ font-size:16px; font-family:'IBM Plex Mono', monospace; text-transform:none; color:var(--gold); display:block; margin-top:4px; }
+  .price-card ul{ margin:16px 0 0; padding:0; list-style:none; font-family:'IBM Plex Mono', monospace; font-size:13px; opacity:0.9; }
+  .price-card li{ padding:4px 0; }
+  .price-blurb{
+    font-family:'Source Sans 3', sans-serif;
+    font-size:13.5px;
+    line-height:1.5;
+    color:rgba(246,241,231,0.75);
+    border-top:1px solid rgba(246,241,231,0.2);
+    padding-top:16px;
+  }
+  .cta-btn{
+    background:var(--gold); color:var(--green); border:none; border-radius:8px;
+    padding:14px 26px; font-weight:700; font-family:'Source Sans 3', sans-serif; font-size:15px;
+    cursor:pointer; white-space:nowrap;
+  }
+  .cta-btn:disabled{ opacity:0.7; cursor:not-allowed; }
+  .price-card .cta-btn{ width:100%; }
+
+  footer{ padding:50px 0; text-align:center; }
+  footer .eyebrow{ justify-content:center; }
+  footer .eyebrow::before{ display:none; }
+  footer a.mail{ font-family:'Big Shoulders Display', sans-serif; font-size:26px; text-decoration:none; }
+  footer .fine{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:#8a8378; margin-top:18px; }
+
+  /* ---------- LEAD MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(28,26,23,0.6);
+    display:none; align-items:center; justify-content:center;
+    z-index:1000; padding:20px;
+  }
+  .modal-overlay.active{ display:flex; }
+  .modal-box{
+    background:var(--paper); border-radius:12px;
+    max-width:420px; width:100%; padding:32px; position:relative;
+    box-shadow:0 24px 50px rgba(0,0,0,0.4);
+  }
+  .modal-box h3{ font-size:26px; margin-bottom:10px; }
+  .modal-box p{ margin:0 0 18px; color:#463f36; font-size:15px; }
+  .modal-box label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; display:block; margin-bottom:6px; }
+  .modal-box input[type="email"]{
+    width:100%; border:1px solid var(--line); border-radius:8px;
+    padding:11px 12px; font-family:'Source Sans 3', sans-serif; font-size:15px;
+    margin-bottom:14px; background:#fff;
+  }
+  .modal-close{
+    position:absolute; top:14px; right:16px; background:none;
+    border:none; font-size:20px; cursor:pointer; color:var(--ink); line-height:1;
+  }
+
+  ::selection{ background:var(--gold); color:var(--green); }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+</style>
+</head>
+<body>
+
+<main>
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="eyebrow">Upward Local</div>
+      <h1 class="wordmark">Never miss<br>another<span> customer<br>message.</span></h1>
+      <p class="tagline">A simple reply tool for the questions your customers already ask you every day — hours, prices, bookings — answered the second they're sent, even when you can't get to the phone.</p>
+
+      <div class="sign-rig">
+        <div class="sign-frame">
+          <div class="hook"></div>
+          <div class="sign" id="signToggle" role="button" tabindex="0" aria-label="Toggle between closed and open state">
+            <div class="sign-face closed"><span class="label">SORRY<br>WE'RE<br>CLOSED</span></div>
+            <div class="sign-face open"><span class="label">WE'RE<br>ALWAYS<br>OPEN</span></div>
+          </div>
+          <div class="sign-sub">Tap the sign to see the difference</div>
+        </div>
+
+        <div class="demo-col">
+          <div class="demo-callout">
+            <div class="callout-text">Our £8/month<br>base tier</div>
+            <div class="callout-arrow" aria-hidden="true">
+              <svg width="26" height="40" viewBox="0 0 26 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 1 V32" stroke="#c89b3c" stroke-width="2" stroke-dasharray="3 4"/>
+                <path d="M4 25 L13 36 L22 25" stroke="#c89b3c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="demo-panel">
+            <div class="demo-topbar">
+              <div class="biz">Bloom &amp; Co. Hair Studio</div>
+              <div class="status closed-state" id="statusPill" aria-live="polite">No one's answering</div>
+            </div>
+            <div class="demo-body">
+              <div class="state-layer active" id="closedLayer">
+                <div class="msg-in">Hiya, are you open Sundays?</div>
+                <div class="msg-meta">Instagram DM · sent 9:14am</div>
+                <div class="no-reply">— left on read for 2 days —</div>
+
+                <div class="msg-in ghosted" style="margin-top:14px;">How much for a full head of highlights?</div>
+                <div class="msg-meta">Instagram DM · sent yesterday</div>
+                <div class="no-reply">— no reply yet —</div>
+
+                <div class="msg-in ghosted" style="margin-top:14px;">Do you take walk-ins or do I need to book?</div>
+                <div class="msg-meta">Facebook · sent 20 mins ago</div>
+              </div>
+
+              <div class="state-layer" id="openLayer" aria-live="polite" role="log">
+                <div id="chatLog" style="display:flex; flex-direction:column; gap:10px; width:100%;">
+                  <div class="msg-in">Hiya! Ask me about our opening hours, prices, travel options, accessibility, or bookings.</div>
+                </div>
+              </div>
+            </div>
+            <div class="chip-row" id="chipRow">
+              <div class="chip" data-q="How do I book an appointment?">"how to book?"</div>
+              <div class="chip" data-q="What accessibility features do you have?">"accessibility"</div>
+              <div class="chip" data-q="How do I get there by bus or train?">"travel info"</div>
+            </div>
+            <div class="chat-input-row">
+              <input type="text" id="chatInput" placeholder="Type a question as a customer would…" aria-label="Type a demo customer question" maxlength="200">
+              <button id="chatSend">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="eyebrow">The problem</div>
+      <h2 style="font-size:clamp(30px,4vw,44px); max-width:680px;">It's the same three questions, on repeat, every single week.</h2>
+      <div class="receipts">
+        <div class="receipt">
+          <div class="q">"what time do you open tmrw?"</div>
+          <div class="tick">→ sent while you were mid-appointment</div>
+        </div>
+        <div class="receipt">
+          <div class="q">"how much is a cut n colour?"</div>
+          <div class="tick">→ they book elsewhere before you reply</div>
+        </div>
+        <div class="receipt">
+          <div class="q">"any space this sat?"</div>
+          <div class="tick">→ answered days later, if at all</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band dark">
+    <div class="wrap">
+      <div class="eyebrow">How it works</div>
+      <h2 style="font-size:clamp(30px,4vw,44px); max-width:600px;">Set up once. It answers for you, always.</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div><h3 style="color:var(--paper)">You tell us the details</h3><p style="color:rgba(246,241,231,0.85)">Hours, prices, services, booking policy — whatever your customers actually ask. Five minutes on the phone or over a form.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div><h3 style="color:var(--paper)">We build your reply tool</h3><p style="color:rgba(246,241,231,0.85)">A small chat box for your website, Instagram bio, or Facebook page. It only ever answers using what you've told us — nothing made up.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div><h3 style="color:var(--paper)">You try it, free</h3><p style="color:rgba(246,241,231,0.85)">No cost, no contract, for your first two weeks. Keep it only if it's actually saving you time.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <div class="eyebrow">Pricing</div>
+      <div class="price-tiers">
+        <div class="price-card">
+          <div class="price-top">
+            <div class="price-tier-label">Base tier</div>
+            <div class="price-num">£0<span>for the first 2 weeks</span></div>
+            <ul>
+              <li>· base tier</li>
+              <li>· then £8/month if you keep it</li>
+              <li>· cancel any time, no contract</li>
+              <li>· updates to hours or prices done for free</li>
+            </ul>
+          </div>
+          <div class="price-blurb">A basic, web-based chatbot designed to generate leads for your business.</div>
+          <button class="cta-btn" id="openLeadModal">Get my free trial →</button>
+        </div>
+
+        <div class="price-card">
+          <div class="price-top">
+            <div class="price-tier-label">Pro tier</div>
+            <div class="price-num">£0<span>for the first 2 weeks</span></div>
+            <ul>
+              <li>· pro tier</li>
+              <li>· then £20/month if you keep it</li>
+              <li>· cancel any time, no contract</li>
+              <li>· updates to hours or prices done for free</li>
+            </ul>
+          </div>
+          <div class="price-blurb">A more powerful, AI-based chatbot designed to handle any customer request.</div>
+          <button class="cta-btn" data-tier="pro">Get my free trial →</button>
+        </div>
+
+        <div class="price-card">
+          <div class="price-top">
+            <div class="price-tier-label">Ultra tier</div>
+            <div class="price-num">£0<span>for the first 2 weeks</span></div>
+            <ul>
+              <li>· ultra tier</li>
+              <li>· then £50/month if you keep it</li>
+              <li>· cancel any time, no contract</li>
+              <li>· updates to hours or prices done for free</li>
+            </ul>
+          </div>
+          <div class="price-blurb">Seamless AI integration with the rest of your business.</div>
+          <button class="cta-btn" data-tier="ultra">Get my free trial →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="eyebrow">Get in touch</div>
+    <a class="mail" href="mailto:solutions@upwardlocal.co.uk">solutions@upwardlocal.co.uk</a>
+    <div class="fine">Upward Local · built for shops, salons, trades &amp; studios who'd rather be working than replying</div>
+  </div>
+</footer>
+
+<!-- LEAD CAPTURE MODAL -->
+<div class="modal-overlay" id="leadModalOverlay" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="closeLeadModal" aria-label="Close dialog">&times;</button>
+    
+    <div id="leadFormWrap">
+      <h3 id="leadModalTitle">Get your free trial</h3>
+      <p>Pop your email in and we'll be in touch to get you set up — no card required.</p>
+      
+      <form id="leadForm" action="https://formspree.io/f/xqpkeoad" method="POST">
+        <!-- Hidden honeypot field to block spam bots -->
+        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+        
+        <label for="leadEmail">Email address</label>
+        <input type="email" id="leadEmail" name="email" required placeholder="you@yourbusiness.co.uk">
+        <input type="hidden" name="_subject" value="New Upward Local free trial request">
+        <button type="submit" class="cta-btn" id="leadSubmitBtn" style="width:100%;">Request my free trial</button>
+      </form>
+    </div>
+
+    <!-- Inline Thank-You Container -->
+    <div id="modalSuccess" style="display: none; text-align: center; padding: 10px 0;">
+      <h3 style="color: var(--green-bright); margin-bottom: 8px;">Request Received!</h3>
+      <p style="margin: 0;">Thanks for reaching out. We'll be in touch shortly to set up your free 2-week trial.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sign = document.getElementById('signToggle');
+  const closedLayer = document.getElementById('closedLayer');
+  const openLayer = document.getElementById('openLayer');
+  const statusPill = document.getElementById('statusPill');
+
+  const chatLog = document.getElementById('chatLog');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chipRow = document.getElementById('chipRow');
+
+  let hasInteracted = false;
+
+  /* =========================================================
+     CHATBOT ENGINE (Bloom & Co. — full logic, hooked into
+     the hero demo panel instead of a floating widget)
+  ========================================================== */
+
+  const MAX_INPUT_LENGTH = 200;
+  const MAX_QTY = 50;
+  const RESPONSE_DELAY_MS = 650;
+  const MIN_GAP_BETWEEN_SENDS_MS = 400;
+
+  let isBusy = false;
+  let lastSendAt = 0;
+
+  let sessionState = {
+    lastService: null,
+    lastTopic: null
+  };
+
+  const OPENING_HOURS_TEXT = "We're open Sun 10am–4pm, and Mon–Sat 9am–6pm!";
+  const BOOKING_PROTO_TEXT = "To book an appointment:\n1. Select a service from our menu.\n2. Tap 'Book Now' on our website or call 01234 567890.\n3. Choose your preferred date & time slot!";
+  const MENU_TEXT = "Our main rates:\n\u2022 Cut & Blow-Dry: \u00A335 (20 minutes)\n\u2022 Full Head Highlights: \u00A375 (30 minutes)\n\u2022 Highlights + Cut Package: \u00A395(40 minutes)\n\u2022 Dry Trim: \u00A320 (20 minutes)";
+  const DIRECTIONS_TEXT = "We are located at 14 Mill Street, past the post office.\n\n\u2022 Bus: The Mill Street bus stop is directly in front of the salon.\n\u2022 Train: Mill Street train station is just a 5-minute walk away.\n\u2022 Driving: Free parking is available round the back!";
+  const ACCESSIBILITY_TEXT = "We aim to make our salon welcoming and comfortable for everyone. Our studio has built-in accessibility arrangements, including step-free access and a wheelchair ramp at the entrance.\n\nIf you have specific needs, accommodations, or preferences (such as sensory-friendly appointments for autism/ADHD, quiet spaces, or mobility support), please reach out to us directly so we can prepare for your visit:\n\u2022 Phone: 01234 567890\n\u2022 Email: bloom@hairstudios.co.uk";
+  const PET_POLICY_TEXT = "We love animals, but for hygiene and safety reasons, pets are not allowed inside the salon (including dogs, cats, fish, or any other animals). Registered assistance or service dogs are always welcome!";
+
+  const replies = [
+    {
+      id: 'pets',
+      keys: [
+        'pet', 'pets', 'dog', 'dogs', 'doggy', 'doggies', 'puppy', 'puppies', 'pooch', 
+        'cat', 'cats', 'kitty', 'kitties', 'kitten', 'kittens', 'fish', 'animal', 'animals', 
+        'furry friend', 'furry friends', 'bring my dog', 'bring a dog', 'bring my cat', 'bring a cat', 
+        'bring my pet', 'bring a pet', 'pet policy', 'guide dog', 'guide dogs', 'service dog', 'service dogs', 
+        'assistance dog', 'assistance dogs', 'bring dog', 'bring cat', 'bring pet', 'bring animals'
+      ],
+      text: PET_POLICY_TEXT
+    },
+    {
+      id: 'how_long',
+      keys: ['how long'],
+      text: "A Cut & Blow-Dry and a Dry Trim both take 20 minutes, a Full Head of Highlights takes 30 minutes, and a Highlights + Cut package takes 40 minutes",
+    },
+    {
+      id: 'accessibility',
+      keys: ['accessibility', 'accessible', 'wheelchair', 'ramp', 'autism', 'autistic', 'adhd', 'disabled', 'disability', 'sensory', 'special needs', 'step free', 'step-free', 'accommodations', 'wheel'],
+      text: ACCESSIBILITY_TEXT
+    },
+    {
+      id: 'bus',
+      keys: ['bus', 'buses', 'bus stop'],
+      text: "Yes, you can take the bus! The Mill Street bus stop is located directly in front of our shop."
+    },
+    {
+      id: 'train',
+      keys: ['train', 'trains', 'train station', 'rail', 'railway'],
+      text: "Yes, you can get the train here! Mill Street train station is just a short 5-minute walk away from us."
+    },
+    {
+      id: 'directions',
+      keys: ['how to get there', 'how do i get there', 'directions', 'reach', 'travel', 'transit', 'public transport', 'getting here', 'find you', 'where are you located'],
+      text: DIRECTIONS_TEXT
+    },
+    {
+      id: 'children',
+      keys: ['child', 'children', 'chiden', 'childen', 'chidren', 'kids', 'kid', 'toddler', 'baby', 'bring my child', 'bring kids', 'family', 'pram', 'stroller'],
+      text: "Yes, absolutely! Children are very welcome in our salon during your appointment."
+    },
+    {
+      id: 'thanks',
+      keys: ['thanks', 'thank you', 'cheers', 'awesome', 'great', 'perfect', 'brilliant', 'thankyou', 'nice', 'cool', 'ty', 'thx'],
+      text: "You're very welcome! Let me know if you need anything else."
+    },
+    {
+      id: 'bye',
+      keys: ['bye', 'goodbye', 'see ya', 'have a good day', 'see you later', 'take care', 'cya', 'later'],
+      text: "Thanks for dropping by! Have a wonderful day!"
+    },
+    {
+      id: 'amenities',
+      keys: ['coffee', 'tea', 'drink', 'drinks', 'wifi', 'wi-fi', 'amenities', 'refreshments', 'snack', 'water'],
+      text: "We offer complimentary tea, coffee, and Wi-Fi for all clients during their visit!"
+    },
+    {
+      id: 'lateness',
+      keys: ['late', 'running late', 'lateness', 'what if im late', 'delay', 'delayed', 'leeway', 'grace period', 'behind schedule'],
+      text: "We offer a 15-minute leeway for appointments. If you arrive more than 15 minutes late, your appointment will unfortunately be cancelled."
+    },
+    {
+      id: 'email',
+      keys: ['email', 'email address', 'e mail', 'mail us', 'emailing'],
+      text: "You can email us at bloom@hairstudios.co.uk for inquiries and booking support."
+    },
+    {
+      id: 'phone',
+      keys: ['phone', 'phone number', 'telephone', 'call', 'call us', 'contact number', 'mobile', 'number', 'ring'],
+      text: "You can call us directly on 01234 567890 during our working hours."
+    },
+    {
+      id: 'reschedule',
+      keys: ['reschedule', 'rescheduling', 'move booking', 'move appointment', 'change time', 'change booking', 'move my', 're-schedule'],
+      text: "To reschedule or move an appointment, tap the link in your confirmation SMS, or call us at 01234 567890 at least 24 hours prior with no fee."
+    },
+    {
+      id: 'cancel',
+      keys: ['cancel', 'cancelling', 'cancellation', 'policy', 'undo booking'],
+      text: "You can cancel your booking up to 24 hours in advance free of charge via your confirmation SMS link or by calling us."
+    },
+    {
+      id: 'sunday',
+      keys: ['sunday'],
+      text: "On Sundays we are open from 10am to 4pm."
+    },
+    {
+      id: 'weekday',
+      keys: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+      text: "We are open from 9am to 6pm on that day!"
+    },
+    {
+      id: 'hours',
+      keys: [
+        'open', 'opening hours', 'open hours', 'opening time', 'opening times', 'open times',
+        'hours', 'opening schedule', 'work schedule', 'business hours', 'when are you open',
+        'what time do you open', 'what time do you close', 'weekend', 'when do you close', 'when are you closed', 'when will you close', 'when will you be open', 
+        'close', 'closed', 'closing', 'when are you closing', 'when will you be closed', 'what time are you closing', 'when are you shut', 'when are you shutting', 'shut', 'lock', 'lock up', 'close up'
+      ],
+      text: OPENING_HOURS_TEXT
+    },
+    {
+      id: 'booking_howto',
+      keys: [
+        'how to book', 'how can i book', 'how do i book', 'how do we book', 'how to make a booking',
+        'how do i make a booking', 'how can i make a booking', 'instructions to book', 'ways to book',
+        'steps to book', 'can i book online', 'where do i book', 'how to reserve'
+      ],
+      text: BOOKING_PROTO_TEXT
+    },
+    {
+      id: 'booking_general',
+      keys: ['book', 'booking', 'reserve', 'reservation', 'appointment', 'slot', 'slots'],
+      text: "You can book directly on our website using the 'Book Now' button, or tell me what service you're looking for!",
+    },
+    {
+      id: 'discounts',
+      keys: ['student', 'discount', 'pensioners', 'OAP', 'concession', 'senior'],
+      text: "We offer a 20% discount for students and seniors (valid ID required)"
+    },
+    {
+      id: 'gender',
+      keys: ['man', 'woman', 'nonbinary', 'men', 'women'],
+      text: "We offer an inclusive service for those of all genders and backgrounds"
+    },
+    {
+      id: 'products',
+      keys: ['shampoo', 'conditioner', 'dyes', 'dye', 'conditioners', 'developers', 'oxidants', 'lighteners', 'bleaching powder', 
+        'powder', 'toners', 'toners', 'powders', 'glosses', 'gloss', 'masks', 'protectants', 'products'],
+      text: "We use a wide range of different products to deliver a top-quality service - please let us know beforehand via email (bloom@hairstudios.co.uk) if you have any specific needs",
+    },
+    {
+      id: 'walkins',
+      keys: ['walk in', 'walk-in', 'walkin', 'do you take walk ins', 'can i walk in', 'availability', 'space', 'busy'],
+      text: "We accept walk-ins if space permits, but booking ahead guarantees your preferred slot."
+    },
+    {
+      id: 'prices',
+      keys: ['price', 'prices', 'pricing', 'cost', 'costs', 'price list', 'menu', 'rate', 'rates', 'fee', 'fees', 'how much', 'how much is', 'services', 'service', 'offering', 'offerings', 'option', 'options', 'what do you do', 'what do you offer', 'what do you guys do', 'what does your company offer', 'what does your business offer', 'treatment', 'treatments', 'what does your business do', 'what can you do', 'what can your business do', 'what can your business offer', 'what can you do for me', 'what treatments', 'what can I get done', 'what can I get', 'pricelist', 'price for', 'price of', 'cost of', 'cost for', 'how much for', 'how much do you charge', 'what do you charge', 'what are your prices', 'what are your rates', 'what services', 'what services do you offer', 'what services do you have', 'what options do you have','packages', 'package', 'catalog', 'catalogue', 'tariff', 'tariffs', 'price sheet', 'rate sheet', 'treatment list', 'service list', 'what can i book'],
+      text: MENU_TEXT
+    },
+    {
+      id: 'highlights',
+      keys: ['full head', 'highlights', 'highlight', 'highlihts', 'highliths', 'hightlights', 'hilights', 'hilight', 'hilits', 'hilit', 'foil', 'foils', 'color', 'colour', 'blonde'],
+      text: "A Full Head of Highlights is \u00A375, or \u00A395 with a Cut and Blow-Dry included. It takes 30 minutes for the Highlights, and 40 minutes with the Cut and Blow-Dry included"
+    },
+    {
+      id: 'haircut',
+      keys: ['haircut', 'blow dry', 'blow-dry', 'trim', 'hairstyle', 'cut'],
+      text: "A standard Cut & Blow-dry is \u00A335, or a Dry Trim is \u00A320. Both services take 20 minutes."
+    },
+    {
+      id: 'location',
+      keys: ['where', 'address', 'located', 'location', 'locaton', 'locaiton', 'lokation', 'based', 'map', 'parking', 'street', 'whereabouts', 'postcode'],
+      text: DIRECTIONS_TEXT
+    },
+    {
+      id: 'greetings',
+      keys: ['hello', 'hi', 'hiya', 'hey', 'good morning', 'good afternoon', 'yo', 'sup', 'heya'],
+      text: "Hi there! How can I help you today? You can ask me about bookings, prices, travel directions, accessibility, pets policy, or rescheduling."
+    },
+    {
+      id: 'payment',
+      keys: ['pay', 'payment', 'card', 'cash', 'apple pay', 'contactless', 'credit card'],
+      text: "We accept all major credit/debit cards, cash, and Apple Pay."
+    },
+    {
+      id: 'loyalty',
+      keys: ['loyalty', 'loyalty card'],
+      text: "We offer a loyalty card, which gives one free Dry Trim every 5 services",
+    }
+    
+  ];
+
+  const numberWords = {
+    'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+    'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10
+  };
+
+  const servicesList = [
+    { key: 'trim', name: 'dry trim', unitPrice: 20, plural: 'dry trims', altKeys: ['trims'] },
+    { key: 'highlight', name: 'full head of highlights', unitPrice: 75, plural: 'full heads of highlights', altKeys: ['highlights', 'highlight', 'highlihts', 'highliths', 'hightlights', 'hilights', 'hilight', 'hilits', 'hilit', 'foil', 'foils', 'color', 'colour'] },
+    { key: 'cut', name: 'cut & blow-dry', unitPrice: 35, plural: 'cut & blow-drys', altKeys: ['haircut', 'haircuts', 'blow dry', 'hairstyle', 'hairstyles'] }
+  ];
+
+  const daysSchedule = {
+    'sunday': { name: 'Sunday', open: 10, close: 16, hoursStr: '10am–4pm', alt: ['sun'] },
+    'monday': { name: 'Monday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['mon'] },
+    'tuesday': { name: 'Tuesday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['tues', 'tue'] },
+    'wednesday': { name: 'Wednesday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['wed'] },
+    'thursday': { name: 'Thursday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['thurs', 'thu'] },
+    'friday': { name: 'Friday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['fri'] },
+    'saturday': { name: 'Saturday', open: 9, close: 18, hoursStr: '9am–6pm', alt: ['sat'] }
+  };
+
+  const weekDaysIndex = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+  function parseRelativeDate(cleanInput) {
+    const now = new Date();
+    let targetOffsetDays = null;
+
+    if (cleanInput.includes('day after tomorrow')) {
+      targetOffsetDays = 2;
+    } else if (cleanInput.includes('tomorrow')) {
+      targetOffsetDays = 1;
+    } else if (cleanInput.includes('today')) {
+      targetOffsetDays = 0;
+    } else {
+      const daysMatch = cleanInput.match(/(?:in\s+)?(\d+|one|two|three|four|five|six|seven)\s+days?(?:\s+time)?/);
+      if (daysMatch) {
+        const rawNum = daysMatch[1];
+        targetOffsetDays = numberWords[rawNum] !== undefined ? numberWords[rawNum] : parseInt(rawNum, 10);
+      }
+    }
+
+    if (targetOffsetDays !== null && !isNaN(targetOffsetDays)) {
+      const targetDate = new Date(now);
+      targetDate.setDate(now.getDate() + targetOffsetDays);
+      const dayName = weekDaysIndex[targetDate.getDay()];
+      return daysSchedule[dayName];
+    }
+
+    const words = cleanInput.split(' ');
+    for (let i = 0; i < words.length; i++) {
+      if (words[i] === 'next' || words[i] === 'this') {
+        const targetDayWord = words[i + 1];
+        if (!targetDayWord) continue;
+        for (let key in daysSchedule) {
+          if (key === targetDayWord || daysSchedule[key].alt.includes(targetDayWord)) {
+            return daysSchedule[key];
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  function parseTime24(cleanInput) {
+    const match = cleanInput.match(/(\b1[0-2]|\b[1-9])(?:[:.\s]([0-5][0-9]))?\s*(am|pm)\b/);
+    if (!match) return null;
+
+    let hour = parseInt(match[1], 10);
+    const minutes = match[2] ? parseInt(match[2], 10) : 0;
+    const meridiem = match[3];
+
+    if (meridiem === 'pm' && hour < 12) hour += 12;
+    if (meridiem === 'am' && hour === 12) hour = 0;
+
+    return hour + (minutes / 60);
+  }
+
+  function parseDay(cleanInput) {
+    const relativeDay = parseRelativeDate(cleanInput);
+    if (relativeDay) return relativeDay;
+
+    const words = cleanInput.split(' ');
+    for (let dayKey in daysSchedule) {
+      const d = daysSchedule[dayKey];
+      if (words.includes(dayKey) || d.alt.some(a => words.includes(a))) {
+        return d;
+      }
+    }
+    return null;
+  }
+
+  function parseService(cleanInput) {
+    for (let s of servicesList) {
+      const allKeys = [s.key, ...(s.altKeys || [])];
+      if (allKeys.some(k => isFuzzyMatch(cleanInput, k))) {
+        sessionState.lastService = s; 
+        return s;
+      }
+    }
+
+    const pronounMatch = cleanInput.split(' ').some(p => ['that', 'it', 'this', 'them', 'one'].includes(p));
+    if (pronounMatch && sessionState.lastService) {
+      return sessionState.lastService;
+    }
+
+    return null;
+  }
+
+  function evaluateQuantityPrices(cleanInput) {
+    const words = cleanInput.split(' ');
+    let matches = [];
+
+    for (let i = 0; i < words.length; i++) {
+      let w = words[i];
+      let qty = null;
+
+      if (/^\d+$/.test(w)) {
+        qty = parseInt(w, 10);
+      } else if (numberWords[w] !== undefined) {
+        qty = numberWords[w];
+      }
+
+      if (qty !== null && qty > 0) {
+        const lookahead = words.slice(i + 1, i + 4).join(' ');
+        for (let s of servicesList) {
+          const allKeys = [s.key, ...(s.altKeys || [])];
+          if (allKeys.some(k => isFuzzyMatch(lookahead, k))) {
+            matches.push({ service: s, qty: qty });
+            sessionState.lastService = s;
+            break;
+          }
+        }
+      }
+    }
+
+    if (matches.length === 0) return null;
+
+    let totalCost = 0;
+    let lineItems = [];
+    let exceedsMax = false;
+
+    for (let m of matches) {
+      if (m.qty > MAX_QTY) exceedsMax = true;
+      let itemCost = m.qty * m.service.unitPrice;
+      totalCost += itemCost;
+      let label = m.qty > 1 ? m.service.plural : m.service.name;
+      lineItems.push(`${m.qty} ${label} (\u00A3${itemCost})`);
+    }
+
+    if (exceedsMax) {
+      return { exceedsMax: true, text: `That's a big order! For larger group bookings, please contact us directly at 01234 567890.` };
+    }
+
+    let text = lineItems.length === 1
+      ? `${matches[0].qty} ${matches[0].qty > 1 ? matches[0].service.plural : matches[0].service.name} will cost \u00A3${totalCost} (\u00A3${matches[0].service.unitPrice} each).`
+      : `Here is the breakdown for your request:\n\u2022 ` + lineItems.join('\n\u2022 ') + `\nTotal: \u00A3${totalCost}`;
+
+    return { exceedsMax: false, text: text, totalCost: totalCost };
+  }
+
+  function evaluateTimeBookingQuestions(cleanInput) {
+    const isBooking = ['book', 'booking', 'reserve', 'appointment', 'slot', 'at'].some(k => cleanInput.includes(k));
+    const isTimeQuery = ['when', 'what time', 'available', 'time', 'times', 'schedule', 'open'].some(k => cleanInput.includes(k));
+    const timeVal = parseTime24(cleanInput);
+    const dayInfo = parseDay(cleanInput);
+    const serviceObj = parseService(cleanInput);
+    const qtyRes = evaluateQuantityPrices(cleanInput);
+
+    if (timeVal !== null || dayInfo !== null || (isBooking && isTimeQuery)) {
+      let responseSections = [];
+
+      if (dayInfo && timeVal !== null) {
+        const closingThreshold = dayInfo.close - 0.25;
+
+        if (isBooking && timeVal > closingThreshold && timeVal <= dayInfo.close) {
+          return `Our last appointment of the day is taken 15 minutes before closing time. On ${dayInfo.name}s, we close at ${dayInfo.hoursStr.split('–')[1]}, so our last appointment slot is 15 minutes prior.`;
+        } else if (timeVal > dayInfo.close) {
+          return `I'm sorry, but we aren't open at that time. We are open on ${dayInfo.name}s from ${dayInfo.hoursStr}. ${OPENING_HOURS_TEXT}`;
+        } else if (timeVal < dayInfo.open) {
+          return `I'm sorry, but we aren't open that early. We are open on ${dayInfo.name}s from ${dayInfo.hoursStr}. ${OPENING_HOURS_TEXT}`;
+        }
+      }
+
+      if (dayInfo) {
+        responseSections.push(`On ${dayInfo.name}s, we are open from ${dayInfo.hoursStr}.`);
+      }
+
+      if (qtyRes) {
+        responseSections.push(qtyRes.text);
+      } else if (serviceObj) {
+        responseSections.push(`The price for a ${serviceObj.name} is \u00A3${serviceObj.unitPrice}.`);
+      }
+
+      responseSections.push(BOOKING_PROTO_TEXT);
+
+      return responseSections.join('\n\n');
+    }
+
+    return null;
+  }
+
+  function levenshtein(a, b) {
+    const tmp = [];
+    let i, j;
+    for (i = 0; i <= a.length; i++) tmp[i] = [i];
+    for (j = 0; j <= b.length; j++) tmp[0][j] = j;
+    for (i = 1; i <= a.length; i++) {
+      for (j = 1; j <= b.length; j++) {
+        tmp[i][j] = Math.min(
+          tmp[i - 1][j] + 1,
+          tmp[i][j - 1] + 1,
+          tmp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+        );
+      }
+    }
+    return tmp[a.length][b.length];
+  }
+
+  function normalizeWord(word) {
+    let w = word.toLowerCase();
+    if (w.endsWith('ing') && w.length > 5) {
+      let base = w.slice(0, -3);
+      if (base === 'rat') return 'rate';
+      if (base === 'schedul') return 'schedule';
+      if (base === 'reschedul') return 'reschedule';
+      if (base === 'book') return 'book';
+      if (base === 'cancell') return 'cancel';
+      return base;
+    }
+    if (w.endsWith('ed') && w.length > 4) return w.slice(0, -2);
+    if (w.endsWith('es') && w.length > 4) return w.slice(0, -2);
+    if (w.endsWith('s') && w.length > 3) return w.slice(0, -1);
+    return w;
+  }
+
+  const EXACT_ONLY_WORDS = new Set([
+    'hi', 'hey', 'cut', 'sat', 'sun', 'mon', 'fee', 'wed', 'fri', 'tue', 'thu',
+    'rate', 'late', 'card', 'call', 'menu', 'move', 'bus', 'ramp'
+  ]);
+
+  function isFuzzyMatch(userWord, keyWord) {
+    const stemUser = normalizeWord(userWord);
+    const stemKey = normalizeWord(keyWord);
+
+    if (stemUser === stemKey) return true;
+
+    if (EXACT_ONLY_WORDS.has(stemKey) || EXACT_ONLY_WORDS.has(stemUser)) return false;
+
+    const lenDiff = Math.abs(stemUser.length - stemKey.length);
+    if (lenDiff > 3) return false;
+    if (Math.min(stemUser.length, stemKey.length) < 3 && lenDiff > 1) return false;
+
+    const dist = levenshtein(stemUser, stemKey);
+    
+    let maxAllowedDist = 1;
+    if (stemKey.length >= 9) {
+      maxAllowedDist = 3;
+    } else if (stemKey.length >= 5) {
+      maxAllowedDist = 2;
+    } else {
+      maxAllowedDist = 1;
+    }
+
+    return dist <= maxAllowedDist;
+  }
+
+  function scoreMatch(cleanInput, inputWords, key) {
+    if (cleanInput.includes(key)) {
+      return 10 + key.length;
+    }
+
+    const stopWords = new Set(['i', 'can', 'do', 'we', 'a', 'an', 'the', 'my', 'your', 'please', 'to', 'what', 'are', 'is', 'of', 'for', 'on', 'get', 'there', 'want', 'like', 'would', 'about']);
+    const keyParts = key.split(' ').filter(w => !stopWords.has(w));
+    const filteredUserWords = inputWords.filter(w => !stopWords.has(w));
+
+    if (keyParts.length === 0) return 0;
+
+    const matchedAll = keyParts.every(kPart => filteredUserWords.some(uWord => isFuzzyMatch(uWord, kPart)));
+    return matchedAll ? keyParts.length * 3 : 0;
+  }
+
+  function isExplicitNegation(segmentText) {
+    return /\b(don't|dont|do not|no|not|other than|instead of|without|reject|exclude|no\s+need)\b/i.test(segmentText);
+  }
+
+  function checkNegatedService(segmentText) {
+    if (!isExplicitNegation(segmentText)) return false;
+
+    for (let s of servicesList) {
+      const allKeys = [s.key, ...(s.altKeys || [])];
+      if (allKeys.some(k => isFuzzyMatch(segmentText, k))) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function resolveFollowUp(cleanInput) {
+    const words = cleanInput.split(' ');
+    const vagueFollowUpTriggers = ['how much', 'what about', 'cost', 'price', 'rates', 'can i', 'do you', 'what if'];
+    
+    const isVague = vagueFollowUpTriggers.some(t => cleanInput.includes(t)) || words.length <= 3;
+
+    if (isVague && sessionState.lastTopic) {
+      return sessionState.lastTopic;
+    }
+    return null;
+  }
+
+  function evaluateSingleSegment(segmentInput) {
+    const inputWords = segmentInput.split(' ').filter(Boolean);
+
+    if (checkNegatedService(segmentInput)) {
+      return `No problem! Here is our full list of available services:\n\n${MENU_TEXT}`;
+    }
+
+    const timeBookingResult = evaluateTimeBookingQuestions(segmentInput);
+    if (timeBookingResult) return timeBookingResult;
+
+    const qtyResult = evaluateQuantityPrices(segmentInput);
+    if (qtyResult) return qtyResult.text;
+
+    let bestReply = null;
+    let maxScore = 0;
+
+    for (const r of replies) {
+      for (const key of r.keys) {
+        let score = scoreMatch(segmentInput, inputWords, key);
+        if (score > maxScore) {
+          maxScore = score;
+          bestReply = r.text;
+        }
+      }
+    }
+
+    if (maxScore > 0 && bestReply) {
+      sessionState.lastTopic = bestReply;
+      return bestReply;
+    }
+
+    const contextualReply = resolveFollowUp(segmentInput);
+    if (contextualReply) {
+      return contextualReply;
+    }
+
+    return null;
+  }
+
+  function findReply(text) {
+    let cleanInput = text.toLowerCase().replace(/[^\w\s.:,;&']/gi, ' ').replace(/\s+/g, ' ').trim();
+
+    const rawSegments = cleanInput.split(/\b(?:and|also|plus|but|except|however)\b|[,?;&]/);
+    const segments = rawSegments.map(s => s.trim()).filter(s => s.length > 1);
+    
+    let responses = [];
+
+    for (let seg of segments) {
+      let res = evaluateSingleSegment(seg);
+      if (res && !responses.includes(res)) {
+        responses.push(res);
+      }
+    }
+
+    if (responses.length > 0) {
+      return responses.join('\n\n--------------------\n\n');
+    }
+
+    return "I'm sorry, I don't have the answer to that question. Please contact our team directly:\n\u2022 Phone: 01234 567890\n\u2022 Email: bloom@hairstudios.co.uk";
+  }
+
+  /* ---------- Sign toggle logic (kept from original) ---------- */
+
+  function setOpenState(isOpen) {
+    sign.classList.toggle('is-open', isOpen);
+    closedLayer.classList.toggle('active', !isOpen);
+    openLayer.classList.toggle('active', isOpen);
+    
+    if (statusPill) {
+      statusPill.textContent = isOpen ? 'Answered instantly' : "No one's answering";
+      statusPill.classList.toggle('closed-state', !isOpen);
+      statusPill.classList.toggle('open-state', isOpen);
+    }
+  }
+
+  sign.addEventListener('click', () => setOpenState(!sign.classList.contains('is-open')));
+  sign.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { 
+      e.preventDefault(); 
+      setOpenState(!sign.classList.contains('is-open')); 
+    }
+  });
+
+  /* ---------- Chat rendering / interaction ---------- */
+
+  function scrollToBottom() {
+    if (openLayer) {
+      openLayer.scrollTop = openLayer.scrollHeight;
+    }
+  }
+
+  function pushMessage(text, outgoing) {
+    const div = document.createElement('div');
+    div.className = outgoing ? 'msg-out' : 'msg-in';
+    div.textContent = text;
+    chatLog.appendChild(div);
+    scrollToBottom();
+  }
+
+  function setBusy(state) {
+    isBusy = state;
+    chatSend.disabled = state;
+    chatInput.disabled = state;
+    chipRow.querySelectorAll('.chip').forEach(c => {
+      state ? c.classList.add('disabled') : c.classList.remove('disabled');
+    });
+  }
+
+  function handleAsk(rawText) {
+    const now = Date.now();
+
+    if (isBusy) return;
+    if (now - lastSendAt < MIN_GAP_BETWEEN_SENDS_MS) return;
+
+    let trimmed = String(rawText || '').trim();
+    if (!trimmed) return;
+
+    if (trimmed.length > MAX_INPUT_LENGTH) {
+      trimmed = trimmed.slice(0, MAX_INPUT_LENGTH);
+    }
+
+    if (!hasInteracted) {
+      hasInteracted = true;
+    }
+
+    lastSendAt = now;
+    setOpenState(true);
+    pushMessage(trimmed, false);
+    chatInput.value = '';
+    setBusy(true);
+
+    const typing = document.createElement('div');
+    typing.className = 'typing';
+    typing.innerHTML = '<span></span><span></span><span></span>';
+    chatLog.appendChild(typing);
+    scrollToBottom();
+
+    setTimeout(() => {
+      typing.remove();
+      pushMessage(findReply(trimmed), true);
+      setBusy(false);
+      chatInput.focus();
+    }, RESPONSE_DELAY_MS);
+  }
+
+  chatSend.addEventListener('click', () => handleAsk(chatInput.value));
+  
+  chatInput.addEventListener('keydown', (e) => { 
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAsk(chatInput.value); 
+    }
+  });
+
+  chipRow.addEventListener('click', (e) => {
+    if (isBusy) return;
+    const chip = e.target.closest('.chip');
+    if (chip && chip.dataset.q) {
+      handleAsk(chip.dataset.q);
+    }
+  });
+
+  // ---- Lead Capture Modal Logic ----
+  const leadModalOverlay = document.getElementById('leadModalOverlay');
+  const closeLeadModal = document.getElementById('closeLeadModal');
+  const leadForm = document.getElementById('leadForm');
+  const leadSubmitBtn = document.getElementById('leadSubmitBtn');
+  const leadEmailInput = document.getElementById('leadEmail');
+
+  const allTrialButtons = document.querySelectorAll('#openLeadModal, [data-tier]');
+
+  if (allTrialButtons.length && leadModalOverlay) {
+    function openModal() { 
+      leadModalOverlay.classList.add('active'); 
+      if (leadEmailInput) leadEmailInput.focus();
+    }
+
+    function closeModal() { 
+      leadModalOverlay.classList.remove('active'); 
+    }
+
+    allTrialButtons.forEach(btn => btn.addEventListener('click', openModal));
+    if (closeLeadModal) closeLeadModal.addEventListener('click', closeModal);
+    
+    leadModalOverlay.addEventListener('click', (e) => { 
+      if (e.target === leadModalOverlay) closeModal(); 
+    });
+
+    document.addEventListener('keydown', (e) => { 
+      if (e.key === 'Escape' && leadModalOverlay.classList.contains('active')) closeModal(); 
+    });
+  }
+
+  if (leadForm) {
+    leadForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Stops Formspree page redirect
+
+      if (leadSubmitBtn) {
+        leadSubmitBtn.disabled = true;
+        leadSubmitBtn.textContent = 'Sending…';
+      }
+
+      try {
+        const response = await fetch(leadForm.action, {
+          method: 'POST',
+          body: new FormData(leadForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('leadFormWrap').style.display = 'none';
+          document.getElementById('modalSuccess').style.display = 'block';
+          leadForm.reset();
+        } else {
+          alert('Something went wrong. Please try again or email solutions@upwardlocal.co.uk directly.');
+        }
+      } catch (err) {
+        alert('Connection error. Please try again.');
+      } finally {
+        if (leadSubmitBtn) {
+          leadSubmitBtn.disabled = false;
+          leadSubmitBtn.textContent = 'Request my free trial';
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
